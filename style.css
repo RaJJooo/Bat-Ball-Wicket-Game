@@ -66,14 +66,17 @@
 .playButton{
   padding: 0.5em 6em 0.5em 6em;
   font-size: 120%;
+  
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   box-shadow: 0px 0px 100px rgb(4, 4, 4);
-  /* background: linear-gradient(90deg, black, rgb(201, 141, 62)); */
-  /* color: white; */
-  /* font-weight: 500; */
-
 }
 .playButton:hover{
   background-color: rgb(81, 239, 19);
   
+}
+.score{
+  background-color: white;
+  margin-top: 20px;
+  padding: 6px;
+  font-size: 30px;
 }

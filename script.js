@@ -8,9 +8,11 @@ document.addEventListener("DOMContentLoaded", () => {
   let playerchoice;
   let compchoice;
 
+  let firsttext;
+
   img1.addEventListener("click", function () {
     playerchoice = "bat";
-    alert("You have chosen Bat");
+    firsttext.innerHTML = "You have chosen Bat";
     document.querySelector("#btn1").style.backgroundColor = "white";
     document.querySelector("#playButtonid").style.backgroundColor =
       "rgb(81, 239, 19)";
@@ -19,7 +21,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   img2.addEventListener("click", function () {
     playerchoice = "ball";
-    alert("You have chosen Ball");
+    firsttext.innerHTML = "You have chosen Ball";
+    // alert("You have chosen Ball");
     document.querySelector("#btn1").style.backgroundColor = "white";
     document.querySelector("#playButtonid").style.backgroundColor =
       "rgb(81, 239, 19)";
@@ -28,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   img3.addEventListener("click", function () {
     playerchoice = "wicket";
-    alert("You have chosen Wicket");
+    firsttext.innerHTML = "You have chosen Wicket";
     document.querySelector("#btn1").style.backgroundColor = "white";
     document.querySelector("#playButtonid").style.backgroundColor =
       "rgb(81, 239, 19)";
@@ -45,7 +48,13 @@ document.addEventListener("DOMContentLoaded", () => {
   playbtn.addEventListener("click", function () {
     if (playbtn.innerHTML === "PLAY AGAIN") resetGame();
     if (!playerturn) {
-      alert("First Your Turn!");
+      firsttext = document.createElement("p");
+      firsttext.innerHTML = "First Your Turn!";
+      firsttext.style.background = "White";
+      firsttext.style.marginTop = "10px";
+      firsttext.style.fontSize = "20px";
+      firsttext.style.fontFamily= "cursive";
+      playbtn.after(firsttext);
       document.querySelector("#btn1").style.backgroundColor =
         "rgb(81, 239, 19)";
     } else {
@@ -74,22 +83,31 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function play() {
     if (playerturn) {
-      alert("You played: " + playerchoice);
+      firsttext.innerHTML = "You have chosen: " + playerchoice;
       document.querySelector("#playButtonid").style.backgroundColor = "white";
       document.querySelector("#btn2").style.backgroundColor =
         "rgb(81, 239, 19)";
 
+      compplay();
+      let comptext = document.createElement("p");
+      firsttext.after(comptext);
+      comptext.style.background = "White";
+      comptext.style.fontSize = "20px";
+      comptext.style.fontFamily= "cursive";
+      comptext.innerHTML = "Computer chose: " + compchoice;
+      playerturn = false;
       setTimeout(() => {
-        compplay();
-        alert("Computer chose: " + compchoice);
-        determineWinner();
-        playerturn = false;
+        setTimeout(determineWinner(), 1000);
       }, 2000);
     }
   }
 
   function determineWinner() {
     let result = "";
+    if (playbtn.nextSibling) {
+      firsttext.nextSibling.remove();
+      playbtn.nextSibling.remove();
+    }
     if (playerchoice === compchoice) {
       result = "It's a tie! 🙂";
     } else if (
